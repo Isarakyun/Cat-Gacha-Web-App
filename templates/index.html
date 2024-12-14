@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Nyan-chan Gacha{% endblock %}
+{% block content %}
+    <h1>Cat Gacha</h1>
+    <p>Welcome to Nyan-chan Gacha! Click the button below to get a random cat image.</p>
+    <p>1 Pull costs 1 coin, while 5 Pulls cost 5 coins.</p>
+    <p>Good luck!</p>
+    <form action="/gacha_1">
+        <button id="get-cat-btn" class="btn btn-primary">1 Pull</button>
+    </form>
+    <form action="/gacha_5">
+        <button id="get-cat-btn-5" class="btn btn-primary">5 Pulls</button>
+    </form>
+    <div id="cat-image"></div>
+{% endblock %}

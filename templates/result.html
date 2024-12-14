@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Gacha Result{% endblock %}
+
+{% block content %}
+    <h1>Gacha Pull Results</h1>
+    <ul>
+        {% for pull in pulls %}
+            <li>{{ pull }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
