@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Nyan-chan Gacha{% endblock %}
 {% block content %}
-    <h1>Cat Gacha</h1>
-    <p>Welcome to Nyan-chan Gacha! Click the button below to get a random cat image.</p>
-    <p>1 Pull costs 1 coin, while 5 Pulls cost 5 coins.</p>
-    <p>Good luck!</p>
-    <form action="/gacha_1">
-        <button id="get-cat-btn" class="btn btn-primary">1 Pull</button>
+    <h1 class="text-3xl font-bold mb-4">Cat Memes Gacha</h1>
+    <p class="mb-2">Welcome to Cat Memes Gacha!</p>
+    <p class="mb-2">1 Pull costs 1 coin, while 5 Pulls cost 5 coins.</p>
+    <p class="mb-4">Good luck!</p>
+    <form action="/gacha_1" class="mb-4">
+        <button id="get-cat-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">1 Pull</button>
     </form>
-    <form action="/gacha_5">
-        <button id="get-cat-btn-5" class="btn btn-primary">5 Pulls</button>
+    <form action="/gacha_5" class="mb-4">
+        <button id="get-cat-btn-5" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">5 Pulls</button>
     </form>
     <div id="cat-image"></div>
 {% endblock %}

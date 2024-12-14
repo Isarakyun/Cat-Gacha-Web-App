@@ -5,29 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Nyan-chan Gacha{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Nyan-chan Gacha</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Coins: {{ total_coins }}</a>
-                </li>
-            </ul>
+    <nav class="bg-gray-100 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-xl font-bold" href="#">Nyan-chan Gacha</a>
+            <div class="block lg:hidden">
+                <button class="text-gray-500 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex lg:items-center lg:w-auto">
+                <ul class="lg:flex lg:space-x-4">
+                    <li>
+                        <a class="text-gray-700 hover:text-gray-900" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-700 hover:text-gray-900" href="/">About</a>
+                    </li>
+                    <li>
+                        <p class="text-gray-700">Coins: {{ total_coins }}</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container mx-auto p-4">
         {% block content %}
         {% endblock %}
     </div>

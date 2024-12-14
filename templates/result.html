@@ -3,10 +3,12 @@
 {% block title %}Gacha Result{% endblock %}
 
 {% block content %}
-    <h1>Gacha Pull Results</h1>
-    <ul>
+<h1 class="text-3xl font-bold mb-4">Gacha Pull Results</h1>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {% for pull in pulls %}
-            <li>{{ pull }}</li>
+            <li class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="{{ url_for('static', filename=pull) }}" alt="Cat Image" class="w-full h-48 object-cover">
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
