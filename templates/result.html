@@ -3,12 +3,20 @@
 {% block title %}Gacha Result{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl font-bold mb-4">Gacha Pull Results</h1>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="flex flex-col justify-center items-center" style="min-height: calc(100vh - 11rem);">
+    <h1 class="mb-12 text-3xl font-bold text-gray-600 text-center">You have obtained</h1>
+    <div class="grid {{ 'grid-cols-1' if pulls|length == 1 else 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' }} gap-4 mb-12">
         {% for pull in pulls %}
-            <li class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="{{ url_for('static', filename=pull) }}" alt="Cat Image" class="w-full h-48 object-cover">
-            </li>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden flex items-center justify-center pointer-events-none">
+                <img src="{{ url_for('static', filename=pull) }}" alt="Cat Image" class="h-64 object-cover">
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+    <div class="flex space-x-4">
+        <form action="{{ '/gacha_1' if pulls|length == 1 else 'gacha_5' }}">
+            <button class="bg-blue text-white font-bold py-2 px-4 rounded">Pull Again</button>
+        </form>
+        <button onclick="window.location.href='/'" class="bg-brown text-white font-bold py-2 px-4 rounded">OK</button>
+    </div>
+</div>
 {% endblock %}

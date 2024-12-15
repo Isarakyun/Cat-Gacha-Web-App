@@ -2,15 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Nyan-chan Gacha{% endblock %}</title>
+    <title>{% block title %}Gacha Game{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bg-light-blue {
+            background-color: #c8d4e3;
+        }
+        .bg-brown {
+            background-color: #cbb2b6;
+        }
+        .bg-pink {
+            background-color: #d19ab2;
+        }
+        .bg-blue {
+            background-color: #8a9dc1;
+        }
+        .bg-cream {
+            background-color: #fad5cd;
+        }
+        .text-light-blue {
+            color: #c8d4e3;
+        }
+        .text-brown {
+            color: #cbb2b6;
+        }
+        .text-pink {
+            color: #d19ab2;
+        }
+        .text-blue {
+            color: #8a9dc1;
+        }
+        .text-pink {
+            color: #fcb3b7;
+        }
+        .text-cream {
+            color: #fad5cd;
+        }
+        .text-green {
+            color: #d6e5dc;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateCountdown() {
+                fetch('/get_countdown')
+                    .then(response => response.json())
+                    .then(data => {
+                        const countdownElement = document.getElementById('countdown');
+                        const coinsElement = document.getElementById('coins');
+                        const countdownContainer = document.getElementById('countdown-container');
+                        const coinsContainer = document.getElementById('coins-container');
+                        if (data.countdown > 0) {
+                            countdownElement.textContent = `${data.countdown} seconds`;
+                            countdownContainer.classList.remove('hidden');
+                            coinsContainer.classList.add('hidden');
+                        } else {
+                            countdownElement.textContent = '';
+                            countdownContainer.classList.add('hidden');
+                            coinsElement.textContent = `Coins: ${data.total_coins}`;
+                            coinsContainer.classList.remove('hidden');
+                        }
+                    });
+            }
+
+            setInterval(updateCountdown, 1000);  // Update every second
+        });
+    </script>
 </head>
 <body>
-    <nav class="bg-gray-100 p-4">
+    <nav class="bg-light-blue p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a class="text-xl font-bold" href="#">Nyan-chan Gacha</a>
+            <a class="text-xl font-bold text-gray-900" href="/">
+                <i class="fas fa-cat text-3xl text-blue mr-2"></i>Cat Memes Gacha</a>
             <div class="block lg:hidden">
                 <button class="text-gray-500 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -19,17 +83,22 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:items-center lg:w-auto">
-                <ul class="lg:flex lg:space-x-4">
-                    <li>
+                <div class="lg:flex lg:space-x-4">
+                    <div>
                         <a class="text-gray-700 hover:text-gray-900" href="/">Home</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-700 hover:text-gray-900" href="/">About</a>
-                    </li>
-                    <li>
-                        <p class="text-gray-700">Coins: {{ total_coins }}</p>
-                    </li>
-                </ul>
+                    </div>
+                    <div>
+                        <a class="text-gray-700 hover:text-gray-900" href="/collections">Collections</a>
+                    </div>
+                    <div id="countdown-container" class="hidden flex items-center">
+                        <i class="fas fa-coins text-yellow-500 mr-2"></i>
+                        <p class="text-gray-700 font-medium">Coins: Refreshing in</p><p id="countdown" class="ml-2 text-red-500 font-bold"></p>
+                    </div>
+                    <div id="coins-container" class="flex items-center">
+                        <i class="fas fa-coins text-yellow-500 mr-2"></i>
+                        <p id="coins" class="text-gray-700 font-medium">Coins: {{ total_coins }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -37,8 +106,5 @@
         {% block content %}
         {% endblock %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
