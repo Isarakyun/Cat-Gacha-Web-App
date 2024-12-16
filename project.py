@@ -3,7 +3,7 @@ import random
 import threading
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='project/templates', static_folder='project/static')
 # to do flash messages, secret key is needed
 app.secret_key = 'nyannyanchan'
 
@@ -21,6 +21,8 @@ def collections():
     return render_template('collections.html', cats=cats, obtained_cats=obtained_cats)
 
 # player budget
+total_coins = 100
+coins_reset_countdown = None
 def coins_left(coin):
     global total_coins, coins_reset_countdown
     total_coins -= coin
@@ -42,7 +44,9 @@ def reset_coins():
     time.sleep(60)
     total_coins = 100
     coins_reset_countdown = None
+    return total_coins, coins_reset_countdown
 
+# so that total_coins (global variable) can be shown anywhere (i put it in base.html)
 @app.context_processor
 def inject_total_coins():
     return dict(total_coins=total_coins)
