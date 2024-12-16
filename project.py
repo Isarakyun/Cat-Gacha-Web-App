@@ -3,7 +3,7 @@ import random
 import threading
 import time
 
-app = Flask(__name__, template_folder='project/templates', static_folder='project/static')
+app = Flask(__name__, template_folder='web/templates', static_folder='web/static')
 # to do flash messages, secret key is needed
 app.secret_key = 'nyannyanchan'
 
