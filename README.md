@@ -1,5 +1,5 @@
 # Cat Memes Gacha
-#### Video Demo: https://youtu.be/N0ZkcgeNOOA
+#### Video Demo: []
 #### Description:
 Cat Memes Gacha is a simple gacha web application where you collect 15 different types of cat memes. I programmed this web application for CS50 Final Project as I have been playing gacha games for almost a decade. I'm only familiar with designing web systems and applications so I decided to base it there. 
 
